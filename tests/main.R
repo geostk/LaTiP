@@ -47,3 +47,10 @@ fittedBrick <- fit_multiple(indexsStack, fit_cores)
 names(fittedBrick) <- c("alayer", "blayer", "clayer", "dlayer")
 setZ(x=fittedBrick, z=c("a", "b", "c", "d"))
 writeRaster(fittedBrick, filename=paraTifDir, format="GTiff", overwrite=TRUE, bandorder='BIL')
+
+
+# 生成测试数据
+testData <- brick('E:/Research/basic/github/LaTiP/data/Red.grd')
+xe <- extent(testData, r1=2, r2=11, c1 = 880, c2 = 889)
+xb <- crop(testData, xe)
+writeRaster(xb, 'E:/Research/basic/github/LaTiP/data/test')
