@@ -16,9 +16,9 @@
 #' dir <- system.file('external', package='bfastSpatial')
 #' 
 #' # Set the location of output and intermediary directories (everything in tmpdir in that case)
-#' srdir <- dirout <- file.path(rasterOptions()$tmpdir, 'bfmspatial')
+#' tmp_dir <- dirout <- file.path(rasterOptions()$tmpdir, 'bfmspatial')
 #' dir.create(dirout, showWarning=FALSE)
-#' processLandsatBatch(x=dir, pattern=glob2rx('*.zip'), outdir=dirout, srdir=srdir, delete=TRUE, vi='ndvi', mask='fmask', keep=0, overwrite=TRUE)
+#' processLandsatBatch(x=dir, pattern=glob2rx('*.zip'), out_dir=dirout, tmp_dir=tmp_dir, delete=TRUE, vi='ndvi', mask='fmask', keep=0, overwrite=TRUE)
 #' 
 #' # Visualize one of the layers produced
 #' list <- list.files(dirout, pattern=glob2rx('*.grd'), full.names=TRUE)

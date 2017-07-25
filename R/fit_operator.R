@@ -1,5 +1,5 @@
 
-fit_multiple <- function(indexsStack, fit_cores) {    
+fit_multiple <- function(indexsStack, num_cores) {    
   
   indexsBrick <- brick(indexsStack)
 
@@ -20,7 +20,7 @@ fit_multiple <- function(indexsStack, fit_cores) {
   }
   
   # 创建 blocks 并运行拟合子函数
-  s <- blockSize(indexsBrick, minblocks=fit_cores)
+  s <- blockSize(indexsBrick, minblocks=num_cores)
   blocs <- seq(1, s$n)
   fun2X <- function(i) {
     e <- extent(indexsBrick, r1=s$row[i], r2=s$row[i]+s$nrows[i]-1)
@@ -30,7 +30,7 @@ fit_multiple <- function(indexsStack, fit_cores) {
   }
   
   #并发运行
-  listOut <- mclapply(X=blocs, FUN=fun2X, mc.cores=fit_cores)
+  listOut <- mclapply(X=blocs, FUN=fun2X, num_cores=num_cores)
   
   #合并结果
   listOut$fun <- max

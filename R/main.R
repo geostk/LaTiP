@@ -6,16 +6,17 @@ path <- 'E:/Research/Experiment/qianshan/features/final'
 codePath <- 'E:/MyProgram/R/BandMath'
 num_cores <- 14
 files_pro_cores <- 12
-
+e_str <- ''
+core_fun_name <- 'fit'
 
 # 进行批量预处理
-preprocess_batch(x = in_dir, outdir = indexs_dir, tmp_dir = tmp_dir, delete = FALSE, mask = 'fmask', vi = file_str, e=test_e, num_cores=files_pro_cores)
+preprocess_batch(work_str = work_str, delete = FALSE, mask = 'fmask', vi = file_str, e=e_str, num_cores=files_pro_cores)
 
 #生成时间序列grd文件
-indexsStack <- timeStack(x = indexs_dir, pattern = '^.*\\.grd$', filename = file.path(step_dir, stack_str), datatype = 'INT2S')
+stacked_data <- timeStack(x = indexs_dir, pattern = '^.*\\.grd$', filename = file.path(step_dir, stack_str), datatype = 'INT2S')
 
 #并发进行时间序列拟合
-fittedBrick <- fit_multiple(indexsStack, num_cores)
+processed_data <- multicore_frame(raster_brick = stack_data, core_fun = core_fun_name, num_cores=1)
 
 #输出最终结果
 names(fittedBrick) <- c("alayer", "blayer", "clayer", "dlayer")
