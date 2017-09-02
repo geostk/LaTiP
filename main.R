@@ -8,11 +8,11 @@ library(stringr)
 library(zoo)
 
 # set root paths for data and code
-path <- '/home/xiao/XWorkSpace/Data'
-codePath <- '/home/xiao/XWorkSpace/Program/LaTiP'
+path <- '/home/xiao/XWorkSpace/qianshan/Data2'
+codePath <- '/home/xiao/XWorkSpace/qianshan/Program/LaTiP'
 
 # set the number of CPU cores to analyze series data
-fit_cores <- 14
+series_cores <- 14
 
 # set the number of CPU cores to preprocess image files
 files_pro_cores <- 12
@@ -21,11 +21,11 @@ files_pro_cores <- 12
 # import function files
 source(file.path(codePath,'calculator_vis.R'))
 source(file.path(codePath,'multicore_operate.R'))
-source(file.path(codePath,'operator_series.R'))
 source(file.path(codePath,'process.R'))
 source(file.path(codePath,'process_batch.R'))
 source(file.path(codePath,'sr_to_vi.R'))
 source(file.path(codePath,'time_stack.R'))
+source(file.path(codePath,'get_scene_info.R'))
 
 # define work directories
 inDir <- file.path(path, 'in')
@@ -37,11 +37,14 @@ test_r <- raster(file.path(userDir, 'l8_targetarea.tif'))
 test_e <- extent(test_r)
 
 # define operators
-opera_str <- c('stack_mean', 'fit_tri', 'fit_poly2', 'fit_poly3')
+# opera_str <- c('stack_mean', 'fit_tri', 'fit_poly2', 'fit_poly3')
+opera_str <- c('fit_tri_en')
 
 itemList <- c('sr_blue','sr_green','sr_red','sr_nir','sr_swir1','sr_swir2')
 
 for (file_str in itemList){
+  
+  t1 <- Sys.time()
   
   print(paste('begin: ',file_str, sep = ""))
   
@@ -65,15 +68,21 @@ for (file_str in itemList){
   
   # analyze time series data
   for (i_opera in opera_str) {
-    
-    # set the output path of analyzing results
+
     tifDir <- file.path(outDir, paste(file_str, '_', i_opera, '.tif', sep = ""))
     
+    t2 <- Sys.time()
+    
     # perform analysis in a parallel manner
-    resultBrick <- multicore_operate(indexsStack, i_opera, fit_cores)
+    resultBrick <- multicore_operate(indexsStack, i_opera, series_cores)
+      
+    t3 <- Sys.time()
+    t_3_2 <- t3 - t2
     
     # output final result
     writeRaster(resultBrick, filename=tifDir, format="GTiff", overwrite=TRUE, bandorder='BIL')
+    
+    print(paste('....',i_opera, ' cost time ', as.character(t_3_2), sep = ""))
   }
 
 
@@ -107,6 +116,9 @@ for (file_str in itemList){
   #   write.table(failedPosMatrix, file = csvPath, col.names = FALSE, row.names = FALSE, sep = ',')
   # }
   
-  print(paste('end: ',file_str, sep = ""))
+  t4 <- Sys.time()
+  t_4_1 <- t4 - t1
+  
+  print(paste(file_str, ' total time ', as.character(t_4_1), sep = ""))
   
 }

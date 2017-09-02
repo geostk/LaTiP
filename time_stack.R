@@ -18,9 +18,9 @@ time_stack <- function(x, pattern=NULL, orderChrono = TRUE, ...) {
     }
     
     s <- stack(x)
-    names(s) <- row.names(getSceneinfo(x))
+    names(s) <- row.names(get_scene_info(x))
     
-    time <- getSceneinfo(x)$date
+    time <- get_scene_info(x)$date
     s <- setZ(x=s, z=time)
     
     if(hasArg(filename)) {
