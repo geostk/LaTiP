@@ -36,7 +36,7 @@ LaTiP requires the rgdal package, which is a binding between the gdal library an
 
 ## Schematic Diagram ##
 #### Modelling time series values on a specific pixel. ####
-<img src="https://github.com/jingge326/MaterialFolder/blob/master/plot_points.png" width = "600" height = "600" alt="" align=center />
+<img src="https://github.com/jingge326/MaterialFolder/blob/master/plot_curves.png" width = "600" height = "600" alt="" align=center />
 
 #### Two typical categories of land surface change shown by six bands of surface reflectance: (a), (b) deciduous forest, and (c), (d) developed land. ####
 <img src="https://github.com/jingge326/MaterialFolder/blob/master/samples.png" width = "700" height = "485" alt="" align=center />
