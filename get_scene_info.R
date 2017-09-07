@@ -1,4 +1,10 @@
 
+# Retrieve Landsat info from filenames. Parses through typical Landsat filenames and retrieves 
+# information on sensor and acquisition date.
+
+# Jingge Xiao
+# August 2017
+
 get_scene_info <- function(sourcefile, ...)
 {
   if(!all(grepl(pattern='(LT4|LT5|LE7|LC8)\\d{13}', x=sourcefile)))

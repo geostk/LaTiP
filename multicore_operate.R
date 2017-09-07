@@ -1,4 +1,12 @@
 
+# Allows functions to be applied to raster objects with multicore support. 
+# Including some basic calculators of regression analysis. This module is 
+# extendable, users can add calculators according to their researches.
+
+# Jingge Xiao
+# August 2017
+
+
 multicore_operate <- function(indexsStack, i_opera, series_cores = 1) {    
   
   xaxis <- julian(as.Date(getZ(indexsStack)))
@@ -17,7 +25,8 @@ multicore_operate <- function(indexsStack, i_opera, series_cores = 1) {
     if (sum(indivVector, na.rm = TRUE) != 0) {
       yaxis <- indivVector
       fdata <- data.frame(xaxis, indivVector)
-      fresult = lm(yaxis ~ xaxis + I(cospi((2/365.256363004)*xaxis)) + I(sinpi((2/365.256363004)*xaxis)), data = fdata)
+      fresult = lm(yaxis ~ xaxis + I(cospi((2/365.256363004)*xaxis)) + 
+                     I(sinpi((2/365.256363004)*xaxis)), data = fdata)
       b0 <- summary(fresult)$coefficients[1]
       b1 <- summary(fresult)$coefficients[2]
       b2 <- summary(fresult)$coefficients[3]
@@ -34,7 +43,8 @@ multicore_operate <- function(indexsStack, i_opera, series_cores = 1) {
     if (sum(indivVector, na.rm = TRUE) != 0) {
       yaxis <- indivVector
       fdata <- data.frame(xaxis, indivVector)
-      fresult = lm(yaxis ~ xaxis + I(cospi((2/365.256363004)*xaxis)) + I(sinpi((2/365.256363004)*xaxis)), data = fdata)
+      fresult = lm(yaxis ~ xaxis + I(cospi((2/365.256363004)*xaxis)) + 
+                     I(sinpi((2/365.256363004)*xaxis)), data = fdata)
       b0 <- summary(fresult)$coefficients[1]
       b1 <- summary(fresult)$coefficients[2]
       b2 <- summary(fresult)$coefficients[3]

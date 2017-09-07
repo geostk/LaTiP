@@ -1,4 +1,9 @@
 
+# An example of how to use LaTiP to process data and carry out time series analysis
+
+# Jingge Xiao
+# August 2017
+
 # import packages
 library(raster)
 library(parallel)
@@ -84,37 +89,6 @@ for (file_str in itemList){
     
     print(paste('....',i_opera, ' cost time ', as.character(t_3_2), sep = ""))
   }
-
-
-  
-  
-  
-  
-  
-  # # output path of fitting failed data
-  # csvPath <- file.path(outDir, paste(file_str,'_failedPos.tif', sep = ""))
-  
-  # # check points where the fitting fails
-  # fitNAlist <- list()
-  # for (i in 1:dim(fittedBrick)[1]){
-  #   for (j in 1:dim(fittedBrick)[2]){
-  #     fitvector <- fittedBrick[i,j,]
-  #     if(sum(is.na(fitvector)) > 0){
-  #       fitNAlist <- c(fitNAlist,list(c(i,j)))
-  #     }
-  #   }
-  # }
-  
-  # # output locations of fitting failed points
-  # if (length(fitNAlist)>0){
-  #   failedPosMatrix <- matrix(nrow=length(fitNAlist), ncol=length(fitNAlist[[1]]), byrow = TRUE)
-  #   for (i in 1:length(fitNAlist)){
-  #     for (j in 1:length(fitNAlist[[1]])){
-  #       failedPosMatrix[i,j] <- fitNAlist[[i]][j]
-  #     }
-  #   }
-  #   write.table(failedPosMatrix, file = csvPath, col.names = FALSE, row.names = FALSE, sep = ',')
-  # }
   
   t4 <- Sys.time()
   t_4_1 <- t4 - t1

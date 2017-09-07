@@ -1,4 +1,9 @@
 
+# A function to create raster stacks of spectral index layers, with time written in the object properties.
+
+# Jingge Xiao
+# August 2017
+
 time_stack <- function(x, pattern=NULL, orderChrono = TRUE, ...) {
     
     if(!is.character(x)){

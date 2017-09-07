@@ -1,7 +1,8 @@
+
+# Including basic spectral indexs calculator. This module is extendable, if users want to calculate more indexs.
+
 # Jingge Xiao
 # August 2017
-
-# Each function needs to return a vector of indices (band numbers) and a function to be passed to overlay
 
 
 # BLUE --------------------------------------------------------------------

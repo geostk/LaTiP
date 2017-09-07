@@ -1,4 +1,9 @@
 
+# The batch processing implementation of process() with parallel computing support.
+
+# Jingge Xiao
+# August 2017
+
 process_batch <- function(x, pattern=NULL, outdir, srdir, mc.cores=1, ...) {
     
     if (!is.character(x)) {

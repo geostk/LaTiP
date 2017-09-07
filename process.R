@@ -1,4 +1,10 @@
 
+# The base function that brings a single landsat scene from its archive to a spectral index raster layer, 
+# cropped to a certain extent and with clouds filtered out.
+
+# Jingge Xiao
+# August 2017
+
 process <- function(x, vi='ndvi', srdir, outdir, untar=TRUE, delete=FALSE, mask=NULL, L=0.5, ...) {
   indexLoc=nchar(x)-37
   typeCode=as.numeric(substr(x,indexLoc,indexLoc))

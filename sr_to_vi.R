@@ -1,4 +1,10 @@
 
+# Calculate Vegetation Index from Landsat surface reflectance data file.
+# Extract layers, apply mask, crop, calculate spectral indices and write output to file.
+
+# Jingge Xiao
+# August 2017
+
 sr_to_vi <- function(x, typeCode, vi='ndvi', e=NULL, mask=NULL, keep=c(0,1), L=0.5, ...) {      
 
     clean <- function(x,y) {
