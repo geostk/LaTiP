@@ -36,6 +36,9 @@ LaTiP requires the rgdal package, which is a binding between the gdal library an
 
 ## Schematic Diagram ##
 #### Modelling time series values on a specific pixel. ####
+<img alt="" src="https://github.com/jingge326/MaterialFolder/blob/master/plot_points.png" style=" max-height:800px; min-height:140; max-width:800px; min-width:250">
+
+
 ![](https://github.com/jingge326/MaterialFolder/blob/master/plot_points.png)
 
 ![](https://github.com/jingge326/MaterialFolder/blob/master/plot_curves.png)
