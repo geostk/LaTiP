@@ -23,3 +23,23 @@ LaTiP requires the rgdal package, which is a binding between the gdal library an
 - `calculator_vis()`: Including basic spectral indexs calculator. This module is extendable, if users want to calculate more indexs.
 - `multicore_operate()`: Allows functions to be applied to raster objects with multicore support. Including some basic calculators of regression analysis. This module is extendable, users can add calculators according to their researches.
 - `get_scene_info()`: Retrieve Landsat info from filenames. Parses through typical Landsat filenames and retrieves information on sensor and acquisition date.
+
+## Processing Details ##
+- Extract data from the tar.gz archive
+- Calculate spectral indices from surface reflectance bands (when not provided by USGS)
+- Crop the data to a desired spatial extent
+- Apply one of the cloud/land mask supplied with the data
+- Create a spatio-temporal object to be used in subsequent analyses
+- Carry out regression analysis on pixel level in time dimension
+- Calculate mean pixel values of stacked time series data
+- Some commonly used time series models are provided
+
+## Schematic Diagram ##
+#### Modelling time series values on a specific pixel. ####
+![](https://github.com/jingge326/MaterialFolder/blob/master/plot_points.png)
+
+![](https://github.com/jingge326/MaterialFolder/blob/master/plot_curves.png)
+
+
+#### Two typical categories of land surface change shown by six bands of surface reflectance: (a), (b) deciduous forest, and (c), (d) developed land. ####
+![](https://github.com/jingge326/MaterialFolder/blob/master/samples.png)
