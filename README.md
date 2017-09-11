@@ -19,7 +19,7 @@ LaTiP requires the rgdal package, which is a binding between the gdal library an
 - `process()`: The base function that brings a single landsat scene from its archive to a spectral index raster layer, cropped to a certain extent and with clouds filtered out.
 - `process_batch()`: The batch processing implementation of process() with parallel computing support.
 - `time_stack()`: A function to create raster stacks of spectral index layers, with time written in the object properties.
-- `sr_to_vi()`: Calculate Vegetation Index from Landsat surface reflectance data file. Extract layers, apply mask, crop, calculate spectral indices and write output to file.
+- `sr_to_vi()`: Calculate Vegetation Index from Landsat surface reflectance data files. Extract layers, apply mask, crop, calculate spectral indices and write output to files.
 - `calculator_vis()`: Including basic spectral indexs calculator. This module is extendable, if users want to calculate more indexs.
 - `multicore_operate()`: Allows functions to be applied to raster objects with multicore support. Including some basic calculators of regression analysis. This module is extendable, users can add calculators according to their researches.
 - `get_scene_info()`: Retrieve Landsat info from filenames. Parses through typical Landsat filenames and retrieves information on sensor and acquisition date.
