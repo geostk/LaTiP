@@ -1,5 +1,5 @@
 
-# Calculate Vegetation Index from Landsat surface reflectance data file.
+# Calculate Vegetation Indexs from Landsat surface reflectance data file.
 # Extract layers, apply mask, crop, calculate spectral indices and write output to file.
 
 # Jingge Xiao
