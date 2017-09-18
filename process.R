@@ -57,6 +57,12 @@ process <- function(x, vi='ndvi', srdir, outdir, untar=TRUE, delete=FALSE, mask=
                 viFormula <- .bsi(typeCode)
               } else if(vi == 'npcri') {
                 viFormula <- .npcri(typeCode)
+              } else if(vi == 'tcbright') {
+                viFormula <- .tcbright(typeCode)
+              } else if(vi == 'tcgreen') {
+                viFormula <- .tcgreen(typeCode)
+              } else if(vi == 'tcwet') {
+                viFormula <- .tcwet(typeCode)
               } else {
                 stop("untar Unsupported vi")
               }

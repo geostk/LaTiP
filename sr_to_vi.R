@@ -56,6 +56,12 @@ sr_to_vi <- function(x, typeCode, vi='ndvi', e=NULL, mask=NULL, keep=c(0,1), L=0
         viFormula <- .bsi(typeCode)
       } else if(vi == 'npcri') {
         viFormula <- .npcri(typeCode)
+      } else if(vi == 'tcbright') {
+        viFormula <- .tcbright(typeCode)
+      } else if(vi == 'tcgreen') {
+        viFormula <- .tcgreen(typeCode)
+      } else if(vi == 'tcwet') {
+        viFormula <- .tcwet(typeCode)
       } else {
         stop("sr2vi Unsupported vi")
       }
