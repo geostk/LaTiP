@@ -5,8 +5,16 @@
 # Jingge Xiao
 # August 2017
 
-sr_to_vi <- function(x, typeCode, vi='ndvi', e=NULL, mask=NULL, keep=c(0,1), L=0.5, ...) {      
+sr_to_vi <- function(x, typeCode, vi='ndvi', e=NULL, mask=NULL, L=0.5, ...) {      
 
+  if (dtype == 'lc'){
+    keep <- c(322, 324, 336, 386, 388, 400)
+  } else if (dtype == 'lpc'){
+    keep <- c(0,1)
+  } else {
+    stop("unsupported input data type")
+  }
+  
     clean <- function(x,y) {
         x[!(y %in% keep)] <- NA
         return(x)
@@ -15,7 +23,6 @@ sr_to_vi <- function(x, typeCode, vi='ndvi', e=NULL, mask=NULL, keep=c(0,1), L=0
     if(extension(x[1]) == '.hdf') { 
         x <- unlist(sapply(FUN=function(x){try(get_subdatasets(x), silent=TRUE)}, X=x), use.names=FALSE)
     }
-    
     
     
     # When the indices are already pre-processed

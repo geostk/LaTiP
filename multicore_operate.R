@@ -88,6 +88,24 @@ multicore_operate <- function(indexsStack, i_opera, series_cores = 1) {
     return(rline)
   }
   
+  # Fitting a 4 order polynomial model -------------------------------------
+  .fit_poly4 <- function(indivVector){
+    rline<-list(NA,NA,NA,NA,NA,NA)
+    if (sum(indivVector, na.rm = TRUE) != 0) {
+      yaxis <- indivVector
+      fdata <- data.frame(xaxis, indivVector)
+      fresult = lm(yaxis ~ xaxis + I(xaxis^2) + I(xaxis^3) + I(xaxis^4), data = fdata)
+      b0 <- summary(fresult)$coefficients[1]
+      b1 <- summary(fresult)$coefficients[2]
+      b2 <- summary(fresult)$coefficients[3]
+      b3 <- summary(fresult)$coefficients[4]
+      b4 <- summary(fresult)$coefficients[5]
+      r2 <- summary(fresult)$r.squared
+      rline <- c(b0, b1, b2, b3, b4, r2)
+    }
+    return(rline)
+  }
+  
   if(i_opera == 'stack_mean') {
     core_fun <- .stack_mean
     
@@ -102,6 +120,9 @@ multicore_operate <- function(indexsStack, i_opera, series_cores = 1) {
     
   } else if(i_opera == 'fit_poly3') {
     core_fun <- .fit_poly3
+    
+  } else if(i_opera == 'fit_poly4') {
+    core_fun <- .fit_poly4
     
   } else {
     stop("Unsupported operation")

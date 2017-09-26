@@ -4,7 +4,7 @@
 # Jingge Xiao
 # August 2017
 
-time_stack <- function(x, pattern=NULL, orderChrono = TRUE, ...) {
+time_stack <- function(x, dtype, pattern=NULL, orderChrono = TRUE, ...) {
     
     if(!is.character(x)){
         stop('x must be a character (directory) or a list of characters')
@@ -14,8 +14,14 @@ time_stack <- function(x, pattern=NULL, orderChrono = TRUE, ...) {
     }
     
     orderChronoFun <- function(list) {
-        list2 <- list[order(substr(str_extract(string=basename(list), '(LT4|LT5|LE7|LC8)\\d{13}'), 4, 16))] 
-        return(list2)        
+      if(dtype == 'lpc'){
+        list2 <- list[order(substr(str_extract(string=basename(list), '(LT4|LT5|LE7|LC8)\\S{13}'), 4, 16))] 
+      } else if(dtype == 'lc') {
+        list2 <- list[order(substr(str_extract(string=basename(list), '(LT04|LT05|LE07|LC08)\\S{21}'), 5, 25))] 
+      } else {
+        stop('unsupported data type')
+      }
+      return(list2)        
     }
     
     if(orderChrono){
@@ -23,9 +29,9 @@ time_stack <- function(x, pattern=NULL, orderChrono = TRUE, ...) {
     }
     
     s <- stack(x)
-    names(s) <- row.names(get_scene_info(x))
+    names(s) <- row.names(get_scene_info(x, dtype))
     
-    time <- get_scene_info(x)$date
+    time <- get_scene_info(x, dtype)$date
     s <- setZ(x=s, z=time)
     
     if(hasArg(filename)) {

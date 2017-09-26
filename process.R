@@ -5,8 +5,19 @@
 # Jingge Xiao
 # August 2017
 
-process <- function(x, vi='ndvi', srdir, outdir, untar=TRUE, delete=FALSE, mask=NULL, L=0.5, ...) {
-  indexLoc=nchar(x)-37
+process <- function(x, dtype, vi='ndvi', srdir, outdir, untar=TRUE, delete=FALSE, mask=NULL, ...) {
+
+  if (dtype == 'lc'){
+    type_loc <- 42
+    str_name <- '(LT04|LT05|LE07|LC08)\\S{21}'
+  } else if (dtype == 'lpc'){
+    type_loc <- 37
+    str_name <- '(LT4|LT5|LE7|LC8)\\S{13}'
+  } else {
+    stop("unsupported input data type")
+  }
+  
+  indexLoc=nchar(x)-type_loc
   typeCode=as.numeric(substr(x,indexLoc,indexLoc))
   print(typeCode)
 
@@ -82,8 +93,9 @@ process <- function(x, vi='ndvi', srdir, outdir, untar=TRUE, delete=FALSE, mask=
         }
         
         x <- file.path(srdir, x0)
-    }
-    name <- str_extract(string=basename(x[1]), '(LT4|LT5|LE7|LC8)\\d{13}')   
+   }
+  
+    name <- str_extract(string=basename(x[1]), str_name)   
 
     sr_to_vi(x=x, typeCode=typeCode, vi=vi, filename=sprintf('%s/%s.%s.grd', outdir, vi, name), datatype='INT2S', mask=mask, ...)
     if(delete) {
