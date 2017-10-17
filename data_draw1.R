@@ -69,7 +69,7 @@ pp+geom_point(mapping = aes(colour = variable), size = 1.5, na.rm = TRUE)+
   scale_colour_manual(name = 'Class', values=colorTable, labels=c('Barren Land',
                                                                   'Cultivated Crops',
                                                                   'Deciduous Forest',
-                                                                  'Developed',
+                                                                  'Developed Land',
                                                                   'Evergreen Forest',
                                                                   'Mixed Forest',
                                                                   'Open Water'))
@@ -189,7 +189,7 @@ pc+geom_line(mapping = aes(colour = variable), size = 1)+
   scale_colour_manual(name = 'Class', values=colorTable, labels=c('Barren Land',
                                                                   'Cultivated Crops',
                                                                   'Deciduous Forest',
-                                                                  'Developed',
+                                                                  'Developed Land',
                                                                   'Evergreen Forest',
                                                                   'Mixed Forest',
                                                                   'Open Water'))
