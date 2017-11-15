@@ -117,3 +117,12 @@ for (file_str in itemList){
   print(paste(file_str, ' total time ', as.character(t_4_1), sep = ""))
   
 }
+
+# Calculate the number of pixels with NA value
+tmpIndexsDir <- 'G:/desk/Research/LandCoverMapping/Experiment/qianshan/Final/TimeSeriesRdata/sr_blue_stack.grd'
+
+tmpindexsBrick <- brick(tmpIndexsDir)
+
+numNA <- sum(is.na(getValues(tmpindexsBrick)))
+
+print(numNA)
